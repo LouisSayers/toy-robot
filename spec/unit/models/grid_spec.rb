@@ -45,16 +45,25 @@ describe Grid do
   end
 
   describe '#position_valid?' do
+    let(:xPos) { cols - 1 }
+    let(:yPos) { rows - 1 }
+    let(:heading) { Heading::NORTH }
+    let(:position) { Position.for(xPos, yPos, heading) }
+
+    subject { super().position_valid?(position) }
+
     context 'valid' do
-      #TODO
+      it { is_expected.to eq true }
     end
 
     context 'x out of bounds' do
-      #TODO
+      let(:xPos) { cols }
+      it { is_expected.to eq false }
     end
 
     context 'y out of bounds' do
-      #TODO
+      let(:yPos) { rows }
+      it { is_expected.to eq false }
     end
   end
 

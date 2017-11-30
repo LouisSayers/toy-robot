@@ -20,7 +20,18 @@ describe ToyRobot do
   end
 
   describe '#move_to' do
-    #TODO
+    let(:xPos) { 0 }
+    let(:yPos) { 0 }
+    let(:heading) { Heading::NORTH }
+    let(:new_position) { Position.for(xPos, yPos, heading) }
+
+    subject { robot.move_to(new_position) }
+
+    before { subject }
+
+    it 'updates the robots position' do
+      expect(robot.position).to eq new_position
+    end
   end
 
 end

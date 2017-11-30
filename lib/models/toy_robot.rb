@@ -6,6 +6,7 @@ class ToyRobot
   end
 
   def move_to(new_position)
+    @position = new_position
   end
 
 end
