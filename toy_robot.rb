@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler'
 require 'require_all'
+require 'memoist'
 
 Bundler.setup(:default)
 

@@ -19,4 +19,8 @@ describe ToyRobot do
     end
   end
 
+  describe '#move_to' do
+    #TODO
+  end
+
 end

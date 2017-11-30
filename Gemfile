@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.4.2'
 
 gem 'require_all', '1.4.0'
+gem 'memoist'
 
 group :test, :development do
   gem 'byebug', '9.1.0'

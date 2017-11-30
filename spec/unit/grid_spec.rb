@@ -43,5 +43,20 @@ describe Grid do
       include_examples 'valid arguments'
     end
   end
+
+  describe '#position_valid?' do
+    context 'valid' do
+      #TODO
+    end
+
+    context 'x out of bounds' do
+      #TODO
+    end
+
+    context 'y out of bounds' do
+      #TODO
+    end
+  end
+
 end
 
