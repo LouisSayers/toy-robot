@@ -9,6 +9,10 @@ class Heading
     @heading = heading
   end
 
+  def to_s
+    @heading.to_s
+  end
+
   class << self
     extend Memoist
 

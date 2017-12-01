@@ -21,4 +21,15 @@ describe Heading do
       end
     end
   end
+
+  describe '#to_s' do
+    let(:heading_sym) { Heading::NORTH }
+    let(:heading) { Heading.for(heading_sym) }
+
+    subject { heading.to_s }
+
+    it 'outputs the string version of the heading sym' do
+      expect(subject).to eq heading_sym.to_s
+    end
+  end
 end

@@ -11,6 +11,10 @@ class Position
     self.state == other.state
   end
 
+  def to_s
+    "#{x} #{y} #{heading}"
+  end
+
   protected
 
   def state
