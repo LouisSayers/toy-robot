@@ -15,6 +15,17 @@ class Heading
 
   def next_anticlockwise
     next_index = ALL.index(@heading) - 1
+    next_at_index(next_index)
+  end
+
+  def next_clockwise
+    next_index = (ALL.index(@heading) + 1) % ALL.length
+    next_at_index(next_index)
+  end
+
+  private
+
+  def next_at_index(next_index)
     next_heading_sym = ALL[next_index]
     self.class.for(next_heading_sym)
   end
