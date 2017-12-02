@@ -23,6 +23,19 @@ describe MoveCommand do
       end
     end
 
+    describe 'position does not exist' do
+      let(:position) { nil }
+
+      it 'does not raise an error' do
+        expect { subject }.not_to raise_error
+      end
+
+      it 'does not move the robot' do
+        subject
+        expect(robot).not_to have_received(:move_to)
+      end
+    end
+
     describe 'moving off the grid' do
       let(:grid_position_valid) { false }
 

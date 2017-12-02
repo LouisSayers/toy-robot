@@ -11,14 +11,29 @@ describe ReportCommand do
 
     subject { command.execute(robot, grid) }
 
-    before do
-      Comms.set_output(dummy_out)
-      allow(command).to receive(:output)
-      subject
+    context 'robot does not have a position' do
+      let(:position) { nil }
+
+      before do
+        allow(command).to receive(:output)
+        subject
+      end
+
+      it 'does not attempt to output anything' do
+        expect(command).not_to have_received(:output)
+      end
     end
 
-    it 'prints the position of the robot' do
-      expect(command).to have_received(:output).with(position)
+    context 'robot has a position' do
+      before do
+        Comms.set_output(dummy_out)
+        allow(command).to receive(:output)
+        subject
+      end
+
+      it 'prints the position of the robot' do
+        expect(command).to have_received(:output).with(position)
+      end
     end
   end
 

@@ -5,8 +5,9 @@ class MoveCommand < RoboCommand
     super
 
     position = robot.position
-    heading = position.heading
+    return if position.nil?
 
+    heading = position.heading
     change_x_by, change_y_by = alterations_for(heading)
     new_position = position.create_relative(change_x_by, change_y_by)
 
@@ -30,9 +31,9 @@ class MoveCommand < RoboCommand
   def alterations
     {
       Heading::NORTH => [0, 1],
-      Heading::EAST => [1, 0],
+      Heading::EAST  => [1, 0],
       Heading::SOUTH => [0, -1],
-      Heading::WEST => [-1, 0],
+      Heading::WEST  => [-1, 0],
     }
   end
 

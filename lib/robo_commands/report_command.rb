@@ -3,7 +3,11 @@ class ReportCommand < RoboCommand
 
   def execute(robot, grid)
     super
-    output(robot.position)
+
+    position = robot.position
+    return if position.nil?
+
+    output(position)
   end
 
 end

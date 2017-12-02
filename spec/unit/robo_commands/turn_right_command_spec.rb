@@ -13,27 +13,44 @@ describe TurnRightCommand do
 
     subject { command.execute(robot, grid) }
 
-    before do
-      allow(heading).to receive(:next_clockwise) { next_heading }
-      allow(position).to receive(:create_relative).with(nil, nil, next_heading) { next_position }
-      allow(grid).to receive(:position_valid?) { grid_position_valid }
-      allow(robot).to receive(:move_to)
-      subject
-    end
+    context 'position does not exist' do
+      let(:position) { nil }
 
-    context 'position is valid' do
-      let(:grid_position_valid) { true }
+      before { allow(robot).to receive(:move_to) }
 
-      it 'moves the robot' do
-        expect(robot).to have_received(:move_to).with(next_position)
+      it 'does not raise an error' do
+        expect { subject }.not_to raise_error
+      end
+
+      it 'does not move the robot' do
+        subject
+        expect(robot).not_to have_received(:move_to)
       end
     end
 
-    context 'position is invalid' do
-      let(:grid_position_valid) { false }
+    context 'position exists' do
+      before do
+        allow(heading).to receive(:next_clockwise) { next_heading }
+        allow(position).to receive(:create_relative).with(nil, nil, next_heading) { next_position }
+        allow(grid).to receive(:position_valid?) { grid_position_valid }
+        allow(robot).to receive(:move_to)
+        subject
+      end
 
-      it 'does not move the robot' do
-        expect(robot).not_to have_received(:move_to)
+      context 'position is valid' do
+        let(:grid_position_valid) { true }
+
+        it 'moves the robot' do
+          expect(robot).to have_received(:move_to).with(next_position)
+        end
+      end
+
+      context 'position is invalid' do
+        let(:grid_position_valid) { false }
+
+        it 'does not move the robot' do
+          expect(robot).not_to have_received(:move_to)
+        end
       end
     end
   end
