@@ -56,16 +56,25 @@ describe Grid do
       it { is_expected.to eq true }
     end
 
-    context 'x out of bounds' do
+    context 'x >= columns' do
       let(:xPos) { cols }
       it { is_expected.to eq false }
     end
 
-    context 'y out of bounds' do
+    context 'x < 0' do
+      let(:xPos) { -1 }
+      it { is_expected.to eq false }
+    end
+
+    context 'y >= columns' do
       let(:yPos) { rows }
+      it { is_expected.to eq false }
+    end
+
+    context 'y < 0' do
+      let(:yPos) { -1 }
       it { is_expected.to eq false }
     end
   end
 
 end
-

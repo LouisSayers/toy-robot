@@ -12,6 +12,18 @@ describe Heading do
       end
     end
 
+    context 'heading class given instead of symbol' do
+      let(:heading) { Heading.for(Heading::NORTH) }
+
+      it 'does not raise an error' do
+        expect { subject }.not_to raise_error
+      end
+
+      it 'gives back the same heading' do
+        expect(subject).to eq heading
+      end
+    end
+
     context 'invalid heading' do
       let(:heading) { :unknown_heading_type }
       let(:expected_message) { 'Unknown heading value given' }

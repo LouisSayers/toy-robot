@@ -59,4 +59,68 @@ describe Position do
     end
   end
 
+  describe '#create_relative' do
+    let(:x_change) { nil }
+    let(:y_change) { nil }
+    let(:new_heading) { nil }
+
+    subject { position1.create_relative(x_change, y_change, new_heading) }
+
+    context 'no changes' do
+      it 'creates a new position object even if nothing changes' do
+        expect(subject).not_to equal(position1)
+      end
+    end
+
+    describe 'change in x' do
+      let(:x_change) { -1 }
+      let(:expected_x) { position1_x + x_change }
+
+      it 'updates x' do
+        expect(subject.x).to eq expected_x
+      end
+
+      it 'does not update y' do
+        expect(subject.y).to eq position1_y
+      end
+
+      it 'does not update heading' do
+        expect(subject.heading).to eq Heading.for(position1_heading)
+      end
+    end
+
+    describe 'change in y' do
+      let(:y_change) { -1 }
+      let(:expected_y) { position1_y + y_change }
+
+      it 'does not update x' do
+        expect(subject.x).to eq position1_x
+      end
+
+      it 'updates y' do
+        expect(subject.y).to eq expected_y
+      end
+
+      it 'does not update heading' do
+        expect(subject.heading).to eq Heading.for(position1_heading)
+      end
+    end
+
+    describe 'change in heading' do
+      let(:new_heading) { Heading::WEST }
+
+      it 'does not update x' do
+        expect(subject.x).to eq position1_x
+      end
+
+      it 'does not update y' do
+        expect(subject.y).to eq position1_y
+      end
+
+      it 'updates heading' do
+        expect(subject.heading).to eq Heading.for(new_heading)
+      end
+    end
+  end
+
 end

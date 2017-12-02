@@ -5,6 +5,8 @@ require 'memoist'
 
 Bundler.setup(:default)
 
+require_all 'lib'
+
 welcome_message = <<EOS
 
                       `..,
@@ -64,6 +66,20 @@ welcome_message = <<EOS
                ..````       `````.
                ,,,,,,`     `,,,,,,.
 
-Robot initializing...
+Robot initializing... done
+
+Accepting commands:
 EOS
 puts welcome_message
+
+
+commands = [
+  PlaceCommand.new(1, 1, Heading::SOUTH),
+  MoveCommand.new, MoveCommand.new,
+  ReportCommand.new
+]
+grid = Grid.new(5, 5)
+robot = ToyRobot.new
+
+control = ControlCenter.new(commands, grid, robot)
+control.engage

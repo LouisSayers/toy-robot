@@ -15,10 +15,17 @@ class Position
     "#{x} #{y} #{heading}"
   end
 
+  def create_relative(x_change, y_change = nil, new_heading = nil)
+    new_x = x + ( x_change || 0 )
+    new_y = y + ( y_change || 0 )
+    new_heading ||= heading
+    self.class.for(new_x, new_y, new_heading)
+  end
+
   protected
 
   def state
-    [@x, @y, @heading]
+    [ @x, @y, @heading ]
   end
 
   class << self

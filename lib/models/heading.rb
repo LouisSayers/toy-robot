@@ -17,6 +17,7 @@ class Heading
     extend Memoist
 
     def for(heading)
+      return heading if heading.is_a?(Heading)
       raise ArgumentError.new('Unknown heading value given') unless heading_valid?(heading)
       new(heading)
     end

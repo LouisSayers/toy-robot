@@ -7,7 +7,10 @@ class Grid
   end
 
   def position_valid?(position)
-    position.x < @cols && position.y < @rows
+    position.x >= 0 &&
+      position.y >= 0 &&
+      position.x < @cols &&
+      position.y < @rows
   end
 
   private
