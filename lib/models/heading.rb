@@ -13,6 +13,12 @@ class Heading
     @heading.to_s
   end
 
+  def next_anticlockwise
+    next_index = ALL.index(@heading) - 1
+    next_heading_sym = ALL[next_index]
+    self.class.for(next_heading_sym)
+  end
+
   class << self
     extend Memoist
 
