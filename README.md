@@ -15,3 +15,6 @@ _This project assumes the use of Ruby Version Manager (rvm) for managing ruby an
 
 ## Tests
 * Run Unit and Integration tests with `rspec`
+
+## Limitations
+The Robot currently does not offer feedback for invalid input
