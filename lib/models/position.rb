@@ -12,7 +12,7 @@ class Position
   end
 
   def to_s
-    "#{x} #{y} #{heading}"
+    "#{x},#{y},#{heading}"
   end
 
   def create_relative(x_change, y_change = nil, new_heading = nil)

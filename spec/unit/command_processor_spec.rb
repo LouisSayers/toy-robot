@@ -36,7 +36,7 @@ describe CommandProcessor do
         let(:input) { quit_input }
 
         it 'prints a message to indicate accepting of commands' do
-          expect(processor).to have_received(:output).with('Accepting commands:')
+          expect(processor).to have_received(:output).with('Accepting commands (type QUIT to exit):')
         end
       end
 
@@ -51,7 +51,7 @@ describe CommandProcessor do
       end
 
       describe 'PLACE command' do
-        let(:input) { 'PLACE 1 3 EAST' }
+        let(:input) { 'PLACE 1,3,EAST' }
         let(:expected_command_args) do
           {
             'command' => :place,

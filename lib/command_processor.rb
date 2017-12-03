@@ -2,17 +2,17 @@ class CommandProcessor
   include Comms
 
   def each(&block)
-    output('Accepting commands:')
+    output('Accepting commands (type QUIT to exit):')
 
     enum = Enumerator.new do |yielder|
       loop do
         command_str = get_input
         break if command_str == 'QUIT'
 
-        result = command_data_for(command_str)
-        next if result.nil?
+        command_data = command_data_for(command_str)
+        next if command_data.nil?
 
-        yielder.yield CommandFactory.create_command(result)
+        yielder.yield CommandFactory.create_command(command_data)
       end
     end
 
@@ -35,7 +35,7 @@ class CommandProcessor
 
   def possible_commands
     {
-      place: /PLACE (?<x>\d+) (?<y>\d+) (?<heading>NORTH|EAST|SOUTH|WEST)/,
+      place: /PLACE (?<x>\d+),(?<y>\d+),(?<heading>NORTH|EAST|SOUTH|WEST)/,
       left: /^LEFT\Z/,
       right: /^RIGHT\Z/,
       move: /^MOVE\Z/,

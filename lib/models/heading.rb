@@ -10,7 +10,7 @@ class Heading
   end
 
   def to_s
-    @heading.to_s
+    @heading.to_s.upcase
   end
 
   def next_anticlockwise

@@ -75,5 +75,10 @@ grid = Grid.new(5, 5)
 robot = ToyRobot.new
 commands = CommandProcessor.new
 
-control = ControlCenter.new(commands, grid, robot)
-control.engage
+begin
+  control = ControlCenter.new(commands, grid, robot)
+  control.engage
+rescue Interrupt
+end
+
+puts "\nThank you for trying ToyRobot. Have a great day!"

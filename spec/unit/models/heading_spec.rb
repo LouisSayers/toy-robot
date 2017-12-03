@@ -41,7 +41,7 @@ describe Heading do
     subject { heading.to_s }
 
     it 'outputs the string version of the heading sym' do
-      expect(subject).to eq heading_sym.to_s
+      expect(subject).to eq heading_sym.to_s.upcase
     end
   end
 

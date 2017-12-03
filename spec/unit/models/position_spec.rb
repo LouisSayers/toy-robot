@@ -51,11 +51,11 @@ describe Position do
     end
 
     it 'contains the y position' do
-      expect(subject).to match(/^\d+ #{position1_y}/)
+      expect(subject).to match(/^\d+,#{position1_y}/)
     end
 
     it 'contains the heading' do
-      expect(subject).to match(/^\d+ \d+ #{heading_str}/)
+      expect(subject).to match(/^\d+,\d+,#{heading_str}/)
     end
   end
 
