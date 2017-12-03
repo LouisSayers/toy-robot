@@ -68,18 +68,12 @@ welcome_message = <<EOS
 
 Robot initializing... done
 
-Accepting commands:
 EOS
 puts welcome_message
 
-
-commands = [
-  PlaceCommand.new(1, 1, Heading::SOUTH),
-  MoveCommand.new, MoveCommand.new,
-  ReportCommand.new
-]
 grid = Grid.new(5, 5)
 robot = ToyRobot.new
+commands = CommandProcessor.new
 
 control = ControlCenter.new(commands, grid, robot)
 control.engage
